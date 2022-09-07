@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user!
   before_action :load_question, only: [:new, :create]
   before_action :load_answer, only: [:show]
 
@@ -9,12 +10,12 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @answer = @question.answers.new(answer_params)
+    @answer = @question.answers.new(answer_params.merge(user: current_user))
 
     if @answer.save
-      redirect_to answer_path(@answer)
+      redirect_to question_path(@answer.question), notice: 'Your answer has been successfully created!'
     else
-      render :new
+      render 'questions/show'
     end
   end
 
