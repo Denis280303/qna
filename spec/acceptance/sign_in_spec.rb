@@ -1,14 +1,13 @@
 require 'rails_helper'
 
-feature 'Siging in', %q{
+feature 'Siging in', '
   In order to be able ask questions
   As an user
   I want be able to sign in
- } do
-  
+ ' do
   given(:user) { create(:user) }
 
-  scenario "Existing user try to sign in" do
+  scenario 'Existing user try to sign in' do
     sign_in(user)
 
     expect(page).to have_content 'Signed in successfully.'

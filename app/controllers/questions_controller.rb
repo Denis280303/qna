@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :load_question, only: [:show]
+  before_action :load_question, only: [:show, :destroy]
 
   def index
     @questions = Question.all
@@ -23,6 +23,16 @@ class QuestionsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    if current_user.author?(@question)
+      flash[:notice] = 'Your question has been successfully deleted!' if @question.destroy
+    else
+      flash[:notice] = 'You are not able to delete this question!'
+    end
+
+    redirect_to questions_path
   end
 
   private

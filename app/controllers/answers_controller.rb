@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :load_question, only: [:new, :create]
-  before_action :load_answer, only: [:show]
+  before_action :load_answer, only: [:show, :destroy]
 
   def show; end
 
@@ -17,6 +17,15 @@ class AnswersController < ApplicationController
     else
       render 'questions/show'
     end
+  end
+
+  def destroy
+    if current_user.author?(@answer)
+      flash[:notice] = 'Your answer has been successfully deleted!' if @answer.destroy
+    else
+      flash[:notice] = 'You are not able to delete this answer!'
+    end
+    redirect_to @answer.question
   end
 
   private

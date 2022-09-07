@@ -20,8 +20,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 FactoryBot.define do
+  sequence(:body) { |n| "AnswerBody-#{n}" }
   factory :answer do
-    body { 'AnswerBody' }
+    body { generate(:body) }
 
     association :question
     association :user
