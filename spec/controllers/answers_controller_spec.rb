@@ -5,6 +5,7 @@ describe AnswersController, type: :controller, aggregate_failures: true do
   let(:answer) { create(:answer, question: question) }
 
   describe 'GET #show' do
+    sign_in_user
     before { get :show, params: { id: answer } }
 
     it 'renders the show view' do
@@ -13,6 +14,7 @@ describe AnswersController, type: :controller, aggregate_failures: true do
   end
 
   describe 'GET #new' do
+    sign_in_user
     before { get :new, params: { question_id: question } }
 
     it 'renders the new view' do
@@ -21,6 +23,7 @@ describe AnswersController, type: :controller, aggregate_failures: true do
   end
 
   describe 'POST #create' do
+    sign_in_user
     context 'with valid attributes' do
       it 'saves a new answer to the database' do
         expect { post :create, params: { answer: attributes_for(:answer), question_id: question } }
@@ -31,7 +34,7 @@ describe AnswersController, type: :controller, aggregate_failures: true do
       it 'redirects to show view' do
         post :create, params: { answer: attributes_for(:answer), question_id: question }
 
-        expect(response).to redirect_to assigns(:answer)
+        expect(response).to redirect_to question_path(question)
       end
     end
 
@@ -44,7 +47,7 @@ describe AnswersController, type: :controller, aggregate_failures: true do
       it 're-renders the new view' do
         post :create, params: { answer: attributes_for(:answer, :invalid), question_id: question }
 
-        expect(response).to render_template :new
+        expect(response).to render_template 'questions/show'
       end
     end
   end

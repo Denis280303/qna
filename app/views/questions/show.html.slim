@@ -1,0 +1,7 @@
+h2= 'Question'
+= @question.body
+h2= 'Answers'
+= render @question.answers
+
+- if current_user
+  = render 'answers/form'
