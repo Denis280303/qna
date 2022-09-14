@@ -1,18 +1,17 @@
 require_relative 'acceptance_helper'
 
-feature 'Answer editing', %q{
+feature 'Answer editing', '
 	In order to fix mistake
 	As an author of answer
-} do
-  
+' do
   given(:user) { create(:user) }
   given!(:question) { create(:question) }
   given!(:answer) { create(:answer, question: question) }
 
   scenario 'Non-authenticated user try to edit answer' do
-  	visit question_path(question)
+    visit question_path(question)
 
-  	expect(page).to_not have_link 'Edit'
+    expect(page).to_not have_link 'Edit'
   end
 
   scenario 'Authenticated author sees link to Edit' do
@@ -30,7 +29,7 @@ feature 'Answer editing', %q{
     expect(page).to_not have_link 'Edit'
   end
 
-  scenario "Authenticated user try to edit his answer", js: true do
+  scenario 'Authenticated user try to edit his answer', js: true do
     sign_in(answer.user)
     visit question_path(answer.question)
     click_on 'Edit'
@@ -39,8 +38,7 @@ feature 'Answer editing', %q{
     end
     click_on 'Save'
 
-  	expect(page).to_not have_content answer.body
-  	expect(page).to have_content 'edited answer'
+    expect(page).to_not have_content answer.body
+    expect(page).to have_content 'edited answer'
   end
-
 end

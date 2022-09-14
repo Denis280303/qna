@@ -8,6 +8,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 require("../utilities/answers/edit_form_toggler.js")
+require("../utilities/questions/edit_form_toggler.js")
 
 Turbolinks.start()
 ActiveStorage.start()

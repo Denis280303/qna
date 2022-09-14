@@ -1,10 +1,10 @@
 require_relative 'acceptance_helper'
 
-feature 'The user can answer the question', %q{
+feature 'The user can answer the question', '
   In order to start a discussion about the question
   As an authenticated user
   I would like to be able to answer the question
-}, js: true do
+', js: true do
   given(:user) { create(:user) }
   given(:question) { create(:question) }
 

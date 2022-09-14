@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :load_question, only: [:show, :destroy]
+  before_action :load_question, only: %i[show destroy update]
 
   def index
     @questions = Question.all
@@ -33,6 +33,11 @@ class QuestionsController < ApplicationController
     end
 
     redirect_to questions_path
+  end
+
+  def update
+    @questions = Question.all
+    @question.update(question_params)
   end
 
   private

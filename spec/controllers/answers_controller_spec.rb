@@ -40,7 +40,8 @@ describe AnswersController, type: :controller, aggregate_failures: true do
 
     context 'with invalid attributes' do
       it 'does not save the answer' do
-        expect { post :create, params: { answer: attributes_for(:answer, :invalid), question_id: question, format: :js } }
+        expect {
+ post :create, params: { answer: attributes_for(:answer, :invalid), question_id: question, format: :js } }
           .not_to change(question.answers, :count)
       end
 
@@ -65,7 +66,7 @@ describe AnswersController, type: :controller, aggregate_failures: true do
     end
 
     it 'changes answer attributes' do
-      patch :update, params: { id: answer, question_id: question, answer: { body: 'new body'}, format: :js }
+      patch :update, params: { id: answer, question_id: question, answer: { body: 'new body' }, format: :js }
       answer.reload
       expect(answer.body).to eq 'new body'
     end
