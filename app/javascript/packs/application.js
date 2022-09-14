@@ -3,11 +3,11 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-Rails.start()
+require("../utilities/answers/edit_form_toggler.js")
+
 Turbolinks.start()
 ActiveStorage.start()

@@ -1,0 +1,13 @@
+- @question.answers.each do |answer|
+  - if answer.persisted?
+    p= answer.body
+    - if user_signed_in?
+      - if current_user.author?(answer)
+        p= link_to 'Edit', '', class: 'edit-answer-link', data: { answer_id: answer.id }
+        p
+          = form_with model: answer, local: false, class: 'hidden', html: { id: "edit-answer-#{answer.id}" } do |f|
+            h5= 'Editing answer'
+            = f.label :body, 'Answer'
+            = f.text_area :body, id: "answer_body-#{answer.id}"
+            = f.submit 'Save'
+            p= link_to 'Delete answer', answer_path(answer), method: :delete, data: { confirm: 'Are you sure?' }

@@ -1,10 +1,10 @@
-require 'rails_helper'
+require_relative 'acceptance_helper'
 
-feature 'Create question', '
+feature 'Create question', %q{
   In order to get answer from community
   As an authenticated user
   I want to be able to ask the question
-' do
+}, js: true do
   given(:user) { create(:user) }
 
   scenario 'Authenticated user create the question' do
