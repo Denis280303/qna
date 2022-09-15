@@ -30,6 +30,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'slim-rails'
 gem 'devise'
 gem 'rails-controller-testing'
+gem 'jquery-rails'
+gem 'database_cleaner'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

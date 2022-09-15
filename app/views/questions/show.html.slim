@@ -1,7 +1,9 @@
 h2= 'Question'
 = @question.body
 h2= 'Answers'
-= render @question.answers
+
+.answers
+  = render 'answers'
 
 - if current_user
   = render 'answers/form'

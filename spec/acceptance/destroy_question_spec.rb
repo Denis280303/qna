@@ -1,4 +1,4 @@
-require 'rails_helper'
+require_relative 'acceptance_helper'
 
 feature 'The user can delete the question', '
   In order to clear the history of the questions

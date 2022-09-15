@@ -1,12 +1,13 @@
 - if user_signed_in?
-  = render @questions
-  = link_to 'Sign out', destroy_user_session_path, method: :delete
+  p= link_to 'Sign out', destroy_user_session_path, method: :delete
 - else
   p= link_to 'Sign in', new_user_session_path
   |
   p= link_to 'Create an account', new_user_registration_path
 
+.questions
+  = render 'questions'
 
-
+p
 = link_to 'Ask question', new_question_path
 

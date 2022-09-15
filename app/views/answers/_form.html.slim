@@ -1,5 +1,6 @@
 h3= 'Create answer'
-= form_with model: [@question, @answer], local: true do |f|
+= form_for [@question, @answer], remote: true do |f|
   = f.label :body
+  .answers-errors
   = f.text_area :body
   = f.submit 'Create answer'
