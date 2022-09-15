@@ -20,6 +20,7 @@
 class Question < ApplicationRecord
   belongs_to :user, touch: true
   has_many :answers, dependent: :destroy
+  has_many :attachments
 
   validates :title, presence: true
   validates :body, presence: true
