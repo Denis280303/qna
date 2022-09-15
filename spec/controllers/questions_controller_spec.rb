@@ -29,6 +29,10 @@ describe QuestionsController, type: :controller, aggregate_failures: true do
     it 'renders the new view' do
       expect(response).to render_template :new
     end
+
+    it 'builds new attachment for question' do
+      expect(assigns(:question).attachments.first).to be_a_new(Attachment)
+    end
   end
 
   describe 'POST #create' do
