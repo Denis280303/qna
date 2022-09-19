@@ -7,5 +7,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :questions do
+    delete :delete_attachment, on: :member
+    delete :delete_attachment_for_answer, on: :member
+  end
+
   root to: 'questions#index'
 end

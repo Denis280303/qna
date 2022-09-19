@@ -12,6 +12,7 @@ class AnswersController < ApplicationController
   def create
     @answer = @question.answers.new(answer_params.merge(user: current_user))
     @answer.save
+    render :create
   end
 
   def destroy
