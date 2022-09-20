@@ -21,7 +21,5 @@ Rails.application.routes.draw do
     delete :delete_attachment_for_answer, on: :member
   end
 
-  
-
   root to: 'questions#index'
 end

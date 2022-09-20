@@ -1,9 +1,8 @@
-feature 'The user can vote for the answer', %q{
+feature 'The user can vote for the answer', '
   In order to mark the answer as liked
   As an authenticated user
   I would like to be able to vote
-}, type: :feature, js: true, aggregate_failures: true do
-
+', type: :feature, js: true, aggregate_failures: true do
   given(:author) { create(:user) }
   given(:voter) { create(:user) }
   given(:answer) { create(:answer, user: author) }
@@ -69,7 +68,7 @@ feature 'The user can vote for the answer', %q{
 
     scenario 'tries to do re-vote for the answer' do
       within "#answer_#{answer.id}" do
-        click_on "+"
+        click_on '+'
 
         within '.rating' do
           expect(page).to have_content '1'
