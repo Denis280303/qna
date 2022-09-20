@@ -25,8 +25,11 @@ class Answer < ApplicationRecord
 
   belongs_to :user, touch: true
   belongs_to :question, touch: true
+  has_many :attachments, as: :attachable
 
   validates :body, presence: true
+
+  accepts_nested_attributes_for :attachments, allow_destroy: true
 
   def mark_best_answer!
     transaction do

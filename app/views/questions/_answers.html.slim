@@ -3,6 +3,7 @@
     div id = "answer-#{answer.id}"
       p
         = answer.body
+      ul
         - if answer.best?
           i.best <- the best answer
         - if user_signed_in?
@@ -20,10 +21,15 @@
             p
               = form_with model: answer, local: false, class: 'hidden', html: { id: "edit-answer-#{answer.id}" } do |f|
                 h5= 'Editing answer'
-                = f.label :body, 'Answer'
+                p
+                  = f.label :body, 'Answer'
                 = f.text_area :body, id: "answer_body-#{answer.id}"
+                .links
+                  = link_to_add_association 'add more files', f, :attachments
                 = f.submit 'Save'
-            p= link_to 'Delete answer', 
-              answer_path(answer), 
-              method: :delete, 
-              remote: true
+            p
+              = link_to 'Delete answer', answer_path(answer), method: :delete, remote: true
+        - answer.attachments.each do |a|
+          div id="attachment_#{a.id}"
+            li= link_to a.file.identifier, a.file.url
+            p= link_to 'Delete file', delete_attachment_for_answer_question_path(id: answer.id, attachment_id: a.id), method: :delete, remote: true

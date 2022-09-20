@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :load_question, only: %i[show destroy update]
+  before_action :load_question, only: %i[show destroy update delete_attachment]
 
   def index
     @questions = Question.all
@@ -8,10 +8,12 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = Answer.new(question: @question)
+    @answer.attachments.build
   end
 
   def new
     @question = Question.new
+    @question.attachments.build
   end
 
   def create
@@ -40,10 +42,23 @@ class QuestionsController < ApplicationController
     @question.update(question_params)
   end
 
+  def delete_attachment
+    @attachment = @question.attachments.find(params[:attach_id])
+    @attachment.destroy
+    render :delete_attachments
+  end
+
+  def delete_attachment_for_answer
+    @answer = Answer.find(params[:id])
+    @attachment = @answer.attachments.find(params[:attachment_id])
+    @attachment.destroy
+    render :delete_attachments
+  end
+
   private
 
   def question_params
-    params.require(:question).permit(:title, :body)
+    params.require(:question).permit(:title, :body, attachments_attributes: %i[id file _destroy])
   end
 
   def load_question

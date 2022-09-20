@@ -20,7 +20,10 @@
 class Question < ApplicationRecord
   belongs_to :user, touch: true
   has_many :answers, dependent: :destroy
+  has_many :attachments, as: :attachable, inverse_of: :attachable
 
   validates :title, presence: true
   validates :body, presence: true
+
+  accepts_nested_attributes_for :attachments, allow_destroy: true
 end

@@ -1,6 +1,12 @@
 h3= 'Create answer'
 = form_for [@question, @answer], remote: true do |f|
-  = f.label :body
-  .answers-errors
-  = f.text_area :body
-  = f.submit 'Create answer'
+  p
+    = f.label :body
+    .answers-errors
+    = f.text_area :body
+  p
+    = f.fields_for :attachments do |a|
+    .links
+      = link_to_add_association 'add file', f, :attachments
+  p
+    = f.submit 'Create answer'
