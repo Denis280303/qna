@@ -9,6 +9,7 @@ import "channels"
 
 require("../utilities/answers/edit_form_toggler.js")
 require("../utilities/questions/edit_form_toggler.js")
+require("../utilities/votes/rating.js")
 require("jquery")
 require("@nathanvda/cocoon")
 

@@ -1,5 +1,7 @@
 h2= 'Question'
 = @question.body
+div id="question_#{@question.id}"
+  = render 'votes/vote', resource: @question
 h3= 'Attachments'
 ul
   - @question.attachments.each do |a|

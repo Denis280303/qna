@@ -3,6 +3,8 @@
     div id = "answer-#{answer.id}"
       p
         = answer.body
+      div id = "answer_#{answer.id}"
+        = render 'votes/vote', resource: answer
       ul
         - if answer.best?
           i.best <- the best answer
