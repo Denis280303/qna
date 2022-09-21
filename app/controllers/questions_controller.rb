@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :load_question, only: %i[show destroy update delete_attachment]
+  after_action :publish_question, only: :create
 
   include Voted
 
@@ -40,7 +41,6 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @questions = Question.all
     @question.update(question_params)
   end
 
@@ -65,5 +65,29 @@ class QuestionsController < ApplicationController
 
   def load_question
     @question = Question.find(params[:id])
+  end
+
+  def publish_question
+    return if @question.errors.any?
+    ApplicationController.renderer.instance_variable_set(
+    :@env, {
+      "HTTP_HOST"=>"localhost:3000", 
+      "HTTPS"=>"off", 
+      "REQUEST_METHOD"=>"GET", 
+      "SCRIPT_NAME"=>"",   
+      "warden" => warden
+    }
+    )
+
+    ActionCable.server.broadcast(
+      'questions_list',
+      ApplicationController.renderer.render(
+        partial: 'questions/question',
+        locals: {
+          question: @question,
+          current_user: current_user
+        }
+      )
+    )
   end
 end

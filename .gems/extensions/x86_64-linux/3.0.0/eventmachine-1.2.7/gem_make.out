@@ -1,0 +1,16 @@
+current directory: /home/homepop-os/Рабочий стол/Ruby/qna/.gems/gems/eventmachine-1.2.7/ext/fastfilereader
+/home/homepop-os/.rbenv/versions/3.0.4/bin/ruby -I /home/homepop-os/.rbenv/versions/3.0.4/lib/ruby/3.0.0 -r ./siteconf20220921-6914-e5jvkt.rb extconf.rb
+creating Makefile
+
+current directory: /home/homepop-os/Рабочий стол/Ruby/qna/.gems/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= clean
+
+current directory: /home/homepop-os/Рабочий стол/Ruby/qna/.gems/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\=
+compiling mapper.cpp
+compiling rubymain.cpp
+linking shared-object fastfilereaderext.so
+
+current directory: /home/homepop-os/Рабочий стол/Ruby/qna/.gems/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 fastfilereaderext.so ./.gem.20220921-6914-w1cyvb
