@@ -21,6 +21,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Answer < ApplicationRecord
+  include Votable
+
   default_scope { order(best: :desc, created_at: :asc) }
 
   belongs_to :user, touch: true

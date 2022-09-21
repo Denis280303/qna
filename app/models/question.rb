@@ -18,6 +18,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Question < ApplicationRecord
+  include Votable
+
   belongs_to :user, touch: true
   has_many :answers, dependent: :destroy
   has_many :attachments, as: :attachable, inverse_of: :attachable
