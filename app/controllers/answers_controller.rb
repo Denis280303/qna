@@ -2,6 +2,7 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :load_question, only: [:new, :create]
   before_action :load_answer, only: %i[show destroy update set_best]
+  after_action :publish_answer, only: :create
 
   include Voted
 
@@ -14,7 +15,6 @@ class AnswersController < ApplicationController
   def create
     @answer = @question.answers.new(answer_params.merge(user: current_user))
     @answer.save
-    render :create
   end
 
   def destroy
@@ -44,5 +44,14 @@ class AnswersController < ApplicationController
 
   def load_answer
     @answer = Answer.find(params[:id])
+  end
+
+  def publish_answer
+    return if @answer.errors.any?
+
+
+    ActionCable.server.broadcast(
+      "answers_for_page_with_question_#{@question.id}", {answer: @answer, question: @question}
+    )
   end
 end

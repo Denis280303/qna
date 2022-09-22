@@ -1,0 +1,15 @@
+<div id="answer_{{answer.id}}">
+  <div class="card border-primary mb-3">
+    <div class="card-body">
+      <div class="container">
+        <p>{{answer.body}}</p>
+        <p>
+          <b>
+            <span>Rating: </span>
+          </b>
+        </p>
+        <p> {{render 'votes/vote', resource: answer}} </p>
+      </div>
+    </div>
+  </div>
+</div>

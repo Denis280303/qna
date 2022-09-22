@@ -4,7 +4,7 @@
 h2= 'Answers'
 
 .answers
-  = render 'answers'
+  = render partial: 'questions/answer', locals: { question: @question }
 
 - if current_user
   = render 'answers/form'
