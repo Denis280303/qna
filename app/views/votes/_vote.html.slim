@@ -1,4 +1,5 @@
 -if user_signed_in?
+  h5= "Rating"
   -if not current_user.author?(resource)
     .vote
       p
@@ -22,3 +23,7 @@
                 method: :delete,
                 data: { type: :json },
                 remote: true
+  -else
+    p
+        .rating
+          = resource.rating

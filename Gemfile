@@ -37,6 +37,7 @@ gem 'remotipart'
 gem 'cocoon'
 gem 'gon'
 gem 'handlebars'
+gem 'skim'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -61,6 +62,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'action-cable-testing'
 end
 
 group :test do

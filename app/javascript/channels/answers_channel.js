@@ -7,12 +7,7 @@ consumer.subscriptions.create("AnswersChannel", {
 
   received(data) {
     if (!(gon.user_id === data.answer.user_id)) {
-      let answerTemplate = require('/app/javascript/templates/answer.hbs')({
-        answer: data.answer,
-        question: data.question
-      })
-
-      $('.answers').append(answerTemplate)
+      $(".answers").append(JST['templates/answer']({answer: data.answer, rating: data.rating}));
     }
   }
 });

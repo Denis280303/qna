@@ -3,8 +3,9 @@
     div id = "answer-#{answer.id}"
       p
         = answer.body
-      div id = "answer_#{answer.id}"
-        = render 'votes/vote', resource: answer
+      .votes-answer
+        div id = "answer_#{answer.id}"
+          = render 'votes/vote', resource: answer
       ul
         - if answer.best?
           i.best <- the best answer
@@ -26,9 +27,29 @@
                 p
                   = f.label :body, 'Answer'
                 = f.text_area :body, id: "answer_body-#{answer.id}"
+                .links
+                  = link_to_add_association 'add more files', f, :attachments
+                = f.submit 'Save'
             p
               = link_to 'Delete answer', answer_path(answer), method: :delete, remote: true
         - answer.attachments.each do |a|
           div id="attachment_#{a.id}"
             li= link_to a.file.identifier, a.file.url
             p= link_to 'Delete file', delete_attachment_for_answer_question_path(id: answer.id, attachment_id: a.id), method: :delete, remote: true
+
+      b
+        = 'Comments'
+      .container
+        .answer-comments
+          - unless answer.comments.empty?
+            = render 'comments/comments', commentable: answer, comments: answer.comments
+          - else
+            .empty-comments-label
+              = 'No comments yet'
+
+        - if current_user
+            .card.border-primary.mb-3
+              .card-body
+                .form-group
+                  ol
+                    = render 'comments/form', commentable: answer, comment: answer.comments.build

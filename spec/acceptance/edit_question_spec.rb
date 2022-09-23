@@ -10,14 +10,14 @@ feature 'Question editing', '
   scenario 'Non-authenticated user try to edit question' do
     visit questions_path(question)
 
-    expect(page).to_not have_link 'Edit'
+    expect(page).to_not have_link 'Edit question'
   end
 
   scenario 'Authenticated author sees link to Edit' do
     sign_in(question.user)
-    visit questions_path(question)
+    visit question_path(question)
     within '.questions' do
-      expect(page).to have_link 'Edit'
+      expect(page).to have_link 'Edit question'
     end
   end
 
@@ -25,13 +25,13 @@ feature 'Question editing', '
     sign_in(user)
     visit question_path(question)
 
-    expect(page).to_not have_link 'Edit'
+    expect(page).to_not have_link 'Edit question'
   end
 
   scenario 'Authenticated user try to edit his answer', js: true do
     sign_in(question.user)
-    visit questions_path(question)
-    click_on 'Edit'
+    visit question_path(question)
+    click_on 'Edit question'
     within '.questions' do
       find("#question_body-#{question.id}").fill_in(with: 'edited question')
     end

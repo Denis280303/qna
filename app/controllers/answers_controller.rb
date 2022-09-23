@@ -5,6 +5,7 @@ class AnswersController < ApplicationController
   after_action :publish_answer, only: :create
 
   include Voted
+  include Commented
 
   def show; end
 
@@ -49,9 +50,8 @@ class AnswersController < ApplicationController
   def publish_answer
     return if @answer.errors.any?
 
-
     ActionCable.server.broadcast(
-      "answers_for_page_with_question_#{@question.id}", {answer: @answer, question: @question}
+      "answers_for_page_with_question_#{@question.id}", { answer: @answer, question: @question, rating: @answer.rating }
     )
   end
 end

@@ -4,6 +4,7 @@ class QuestionsController < ApplicationController
   after_action :publish_question, only: :create
 
   include Voted
+  include Commented
 
   def index
     @questions = Question.all
@@ -69,14 +70,15 @@ class QuestionsController < ApplicationController
 
   def publish_question
     return if @question.errors.any?
+
     ApplicationController.renderer.instance_variable_set(
-    :@env, {
-      "HTTP_HOST"=>"localhost:3000", 
-      "HTTPS"=>"off", 
-      "REQUEST_METHOD"=>"GET", 
-      "SCRIPT_NAME"=>"",   
-      "warden" => warden
-    }
+      :@env, {
+        'HTTP_HOST' => 'localhost:3000',
+        'HTTPS' => 'off',
+        'REQUEST_METHOD' => 'GET',
+        'SCRIPT_NAME' => '',
+        'warden' => warden
+      }
     )
 
     ActionCable.server.broadcast(
