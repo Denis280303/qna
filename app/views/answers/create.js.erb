@@ -3,6 +3,6 @@
     $('.answers-errors').html('<%= j message %>');
   <% end %>
 <% else %>
-    $('.answers').html('<%= j render 'questions/answers' %>');
+    $('.answers').html('<%= j render partial: 'questions/answer', locals: { question: @question } %>');
     $('#answer_body').val('');
 <% end %>

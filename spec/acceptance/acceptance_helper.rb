@@ -4,6 +4,7 @@ RSpec.configure do |config|
   config.include AcceptanceHelpers, type: :feature
 
   config.use_transactional_fixtures = false
+  Capybara.server = :puma
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)

@@ -1,0 +1,17 @@
+p #{@answer.body}
+
+h5 Rating
+.vote id="answer_#{@answer.id}"
+  p 
+    a data-remote="true" rel="nofollow" data-method="patch" href="/answers/#{@answer.id}/vote_up"
+      | +
+      
+    .rating 
+      p #{@rating}
+
+  p 
+    a data-remote="true" rel="nofollow" data-method="patch" href="/answers/#{@answer.id}/vote_down"
+	  | -
+  p 
+    a data-remote="true" rel="nofollow" data-method="delete" href="/answers/#{@answer.id}/revoke_vote"
+	  | Revoke vote

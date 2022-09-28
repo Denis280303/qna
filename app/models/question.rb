@@ -19,6 +19,7 @@
 #
 class Question < ApplicationRecord
   include Votable
+  include Commentable
 
   belongs_to :user, touch: true
   has_many :answers, dependent: :destroy
