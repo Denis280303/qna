@@ -38,6 +38,8 @@ gem 'cocoon'
 gem 'gon'
 gem 'handlebars'
 gem 'skim'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+gem "omniauth-rails_csrf_protection"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
