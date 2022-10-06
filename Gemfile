@@ -41,6 +41,11 @@ gem 'skim'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem "omniauth-rails_csrf_protection"
 gem 'cancancan'
+gem 'responders'
+gem 'doorkeeper', '5.6.0'
+gem 'json_spec'
+gem 'active_model_serializers'
+gem 'pry'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -57,7 +62,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'annotate', '~> 3.2'
-  gem 'pry', '~> 0.14.1'
   gem 'rubocop-rails', '~> 2.15'
   gem 'rubocop-performance', '~> 1.14'
 end
@@ -76,6 +80,7 @@ group :test do
   gem 'webdrivers'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'launchy'
+  gem 'rspec-its'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

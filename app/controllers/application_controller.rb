@@ -1,4 +1,9 @@
+require "application_responder"
+
 class ApplicationController < ActionController::Base
+  self.responder = ApplicationResponder
+  respond_to :html
+
   before_action :fetch_shared_params
 
   rescue_from CanCan::AccessDenied do |exception|
