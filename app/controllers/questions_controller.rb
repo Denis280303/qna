@@ -6,8 +6,6 @@ class QuestionsController < ApplicationController
   include Voted
   include Commented
 
-  authorize_resource except: :index
-
   def index
     @questions = Question.all
   end

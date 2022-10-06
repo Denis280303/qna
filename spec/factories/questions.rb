@@ -27,5 +27,11 @@ FactoryBot.define do
     trait :invalid do
       title { nil }
     end
+
+    trait :with_comments do
+      after(:create) do |question|
+        create_list(:comment, 3, commentable: question)
+      end
+    end
   end
 end

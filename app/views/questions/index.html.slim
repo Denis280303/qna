@@ -8,6 +8,6 @@
 .questions-list
   = render @questions
 
--if can? :read, Question
-  p= link_to 'Ask question', new_question_path
+
+p= link_to 'Ask question', new_question_path
 

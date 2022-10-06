@@ -23,8 +23,7 @@
 FactoryBot.define do
   factory :comment do
     body { 'MyText' }
-    user { nil }
-
+    user
     trait :invalid do
       body { nil }
     end
