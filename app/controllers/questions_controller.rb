@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :load_question, only: %i[show destroy update delete_attachment]
+  before_action :load_question, only: %i[show destroy update delete_attachment subscribe unsubscribe]
   after_action :publish_question, only: :create
 
   include Voted
@@ -56,6 +56,16 @@ class QuestionsController < ApplicationController
     @attachment = @answer.attachments.find(params[:attachment_id])
     @attachment.destroy
     render :delete_attachments
+  end
+
+  def subscribe
+    @question.subscribe(current_user)
+    redirect_to @question, notice: 'Subscribed successfully!'
+  end
+
+  def unsubscribe
+    @question.unsubscribe(current_user)
+    redirect_to @question, notice: 'Unsubscribed successfully!'
   end
 
   private
