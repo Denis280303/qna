@@ -48,6 +48,11 @@ gem 'active_model_serializers'
 gem 'pry'
 gem 'sidekiq', '~> 4.2.9'
 gem 'whenever', '0.7.0', :require => false
+gem 'mysql2', '~> 0.4.10'
+gem "thinking-sphinx",
+  :git    => "https://github.com/pat/thinking-sphinx.git",
+  :branch => "develop",
+  :ref    => "d1e3603c9e"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
