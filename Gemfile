@@ -46,6 +46,8 @@ gem 'doorkeeper', '5.6.0'
 gem 'json_spec'
 gem 'active_model_serializers'
 gem 'pry'
+gem 'sidekiq', '~> 4.2.9'
+gem 'whenever', '0.7.0', :require => false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   end
 
   resources :questions, concerns: :voted do
+    post :subscribe, on: :member
+    post :unsubscribe, on: :member
     delete :delete_attachment, on: :member
     delete :delete_attachment_for_answer, on: :member
   end

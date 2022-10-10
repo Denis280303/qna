@@ -24,6 +24,8 @@ class Answer < ApplicationRecord
   include Votable
   include Commentable
 
+  after_create :report_subscribers
+
   default_scope { order(best: :desc, created_at: :asc) }
 
   belongs_to :user, touch: true
@@ -39,5 +41,11 @@ class Answer < ApplicationRecord
       self.class.where(question_id: question_id).update_all(best: false)
       update!(best: true)
     end
+  end
+
+  private
+
+  def report_subscribers
+    ReportSubscribersJob.perform_later(self)
   end
 end

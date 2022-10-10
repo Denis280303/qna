@@ -25,6 +25,8 @@ class User < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :subscribe_lists, dependent: :destroy
+  has_many :subscriptions, class_name: 'Question', through: :subscribe_lists
 
   def self.from_omniauth(access_token)
     data = access_token.info
@@ -41,5 +43,11 @@ end
 
   def author?(object)
     object.user_id.eql?(id)
+  end
+
+  def self.send_daily_digest
+    find_each.each do |user|
+      DailyMailer.delay.digest(user)
+    end
   end
 end
