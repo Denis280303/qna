@@ -55,6 +55,8 @@ gem "thinking-sphinx",
   :ref    => "d1e3603c9e"
 gem 'dotenv'
 gem 'dotenv-deployment', require: 'dotenv/deployment'
+gem 'therubyracer'
+gem 'execjs'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
