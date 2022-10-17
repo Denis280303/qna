@@ -53,6 +53,9 @@ gem "thinking-sphinx",
   :git    => "https://github.com/pat/thinking-sphinx.git",
   :branch => "develop",
   :ref    => "d1e3603c9e"
+gem 'dotenv'
+gem 'dotenv-deployment', require: 'dotenv/deployment'
+gem 'therubyracer'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -71,6 +74,11 @@ group :development do
   gem 'annotate', '~> 3.2'
   gem 'rubocop-rails', '~> 2.15'
   gem 'rubocop-performance', '~> 1.14'
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano-sidekiq', require: false
 end
 
 group :development, :test do
