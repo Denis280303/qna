@@ -82,5 +82,6 @@ test:
 production:
   <<: *default
   database: qna_production
+  gssencmode: disable
   username: postgres
   password: <%= ENV['QNA_DATABASE_PASSWORD'] %>
