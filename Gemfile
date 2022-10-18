@@ -53,6 +53,11 @@ gem "thinking-sphinx",
   :git    => "https://github.com/pat/thinking-sphinx.git",
   :branch => "develop",
   :ref    => "d1e3603c9e"
+gem 'capistrano', '~> 3.11'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-bundler', '>= 1.1.0'
+gem 'capistrano-rvm'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
